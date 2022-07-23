@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-@Repository
+
 public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long, Member> store = new HashMap<>(); // 키는 회원 id(long), 값은 Member / 실무에선 동시성 문제 땜에 concurrentHashMap? 사용해야 함

@@ -9,12 +9,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
     // Dependency Injection - memoryRepository를 외부에서 MemberService로 넣어줌
+
+    // Spring container에 올라가는 기능만 Autowired에 동작한다.
     @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
