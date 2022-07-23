@@ -30,7 +30,7 @@ public class MemberController {
     }
 
     // PostMapping - 데이터를 폼에 넣어서 전달, 데이터를 등록할 때 사용
-    @PostMapping("/memvers/new")
+    @PostMapping("/members/new")
     public String create(MemberForm form) {
         Member member = new Member();
         member.setName(form.getName());
