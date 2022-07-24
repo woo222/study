@@ -1,34 +1,28 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
-import hello.hellospring.repository.MemoryMemberRepository;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import hello.hellospring.repository.MemberRepository;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-// 단위 테스트 스프링 컨테인 없이 테스트 하는 것..
-class MemberServiceTest {
+// Transactional - test 쿼리가 끝난 후 rollback DB에 반영이 안된다.
+@SpringBootTest
+@Transactional
+class MemberServiceIntegrationTest {
 
+    @Autowired
     MemberService memberService;
-    MemoryMemberRepository memberRepository;
-
-    @BeforeEach
-    public void beforeEach() {
-        memberRepository = new MemoryMemberRepository();
-        memberService = new MemberService(memberRepository);
-    }
-
-    // 테스트를 할 때 마다 메모리가 지워지는 method가 끝날 때 마다 수행
-    @AfterEach
-    public void afterEach() {
-        memberRepository.clearStore();
-    }
+    @Autowired
+    MemberRepository memberRepository;
 
     // Test는 한글 명으로 해도 상관이 없다.
     @Test
+    // @Commit - 커밋한다.
     void 회원가입() {
         //given - 뭔가 주어졌을 때
         Member member = new Member();
@@ -68,13 +62,5 @@ class MemberServiceTest {
 
         // then
 
-    }
-
-    @Test
-    void findMembers() {
-    }
-
-    @Test
-    void findOne() {
     }
 }
