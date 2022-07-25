@@ -20,6 +20,8 @@ public class MemberController {
     @Autowired
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
+        // 프록시 확인
+        System.out.println("memberService = " + memberService.getClass());
     }
 
     // GetMapping - url 치는 것, 조회할 때 사용
